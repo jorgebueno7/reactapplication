@@ -1,0 +1,57 @@
+### CAMBIOS RESPECTO A LA ENTREGA ANTERIOR (08/10/2022)
+Para la implementación de la práctica 1, he recurrido a varios cambios en los que no me convencían respecto al diseño 
+inicial. En primer lugar, he eliminado el recurso proveedor (Provider) y la he sustituido por el recurso pedido (Order).
+He considerado que tendría más sentido estar hablando de pedidos en lugar de proveedores y por eso el motivo de este cambio.
+Por otra parte, con respecto a la documentación del API, anteriormente recurrí a un documento word que no era para nada 
+visual ni organizado, en este caso he utilizado la documentación de swagger. Esta documentación está referenciada con una ruta 
+de la API que comentaré más adelante, en este caso, adjuntaré un pdf con la documentación de la primera entrega llamado: 'doc_1.pdf' 
+el cual está sujeto a varios cambios que quedarán reflejados en el pdf con la documentación de esta segunda entrega llamado: 'doc_2.pdf'
+Y por último, he corregido algunos códigos de estado que en la anterior entrega no estaban correctamente y en esta
+entrega, tanto en la documentacion como en la aplicación están correctamente.
+
+### ASPECTOS A TENER EN CUENTA
+Para la correcta ejecución de nuestra aplicación será necesario acudir al directorio raíz de nuestra 
+práctica, abrir un terminal y ejecutar el comando: npm run dev. Este comando es un script que ejecuta nodemon 
+con una llamada al src/index.js donde se encuentran todas las rutas de nuestra aplicación y desplegará nuestra aplicación.
+Se ha llevado a cabo un control de versiones del API tras la ruta '/api/' inclyendo el directorio '/v1/' que irá precedido 
+por las rutas de nuestra aplicación que comentaremos a continuación.
+
+## RUTAS
+Por lo que respecta a las rutas que se encuentran en el fichero index.js, comenzaremos comentando la ruta '/api/v1/doc' que 
+contiene la documentación implementada con swagger, en esta ruta se encuentran todos los recursos de nuestra aplicación, 
+codigos de respuesta y todo lo relacionado con la documentación. Para complementar la documentación, adjuntaremos el pdf 
+referido a esa ruta haciendo CTRL + P sobre la ruta.
+
+En cuanto a las rutas referentes a los recursos de la aplicación que implementan las funcionalidades CRUD de la misma, las he 
+separado en dos directorios, /router y /controllers. En el directorio /controllers, encontraremos las funciones que llevan a cabo 
+cada recurso, dentro de este directorio encontraremos además un archivo llamado 'AuthController.js' que se encargará de realizar 
+el login del usuario generando un token mediante la libreria jwt-simple. Entraremos en detalle más adelante.
+Mientras que en el directorio /router realizamos las llamadas a dichas funciones. 
+
+# PAGINACIÓN
+En cada metodo GET que devuelve una colección de datos he empleado paginación por offset, el límite de cada página por defecto 
+es de 10 elementos, pero en los parametros podremos indicar qué queremos que aparezca. (p.e: http://localhost:3000/products?page=0&limit=4)
+Con este ejemplo, obtendremos los 4 primero productos que se encuentren en la página 0.
+
+# MIDDLEWARES
+He implementado un middleware llamado onsession.js en el directorio /middlewares para comprobar que la sesión del usuario está iniciada.
+Esta parte no ha sido incluida para la entrega, pero se podría probar incluyendo en el metodo GET que devuelve toda la colección
+de datos del directorio /router/users.js y realizando en Postman las pruebas correspondientes copiando el token generado al realizar 
+login en la cabecera authorization, etc.
+
+# UTILS
+En el directorio /utils tenemos un archivos que es de gran importancia para realizar el login de un usuario en la aplicación. 
+Como hemos comentado anteriormente, hemos generado el token a través de la librería jwt-token y esto lo hemos realizado en el archivo jwt.js.
+
+### DATABASE 
+En cuanto a la base de datos, he utilizado mysql, y he realizado un volcado de datos para almacenar los datos y poder importarlos
+posteriormente y hacer pruebas. A continuación, comentaré los pasos a seguir para realizar la importacion correctamente:
+- 1) Conectarnos a la base de datos como usuario "root"
+    - mysql -u root –p
+- 2) Creamos la base de datos, en mi caso, la he llamado "apirest"
+    - mysql > CREATE DATABASE apirest;
+- 3) Para el útlimo paso tenemos que salir de la consola de mysql. Y desde una línea de comandos normal, ejecutar 
+    el siguiente comando que se encagará de realizar la importación de la base de datos almacenando los datos en un fichero
+    llamado database.sql
+    - mysql -u root -p apirest < database.sql
+
