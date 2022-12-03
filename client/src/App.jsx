@@ -1,16 +1,24 @@
 import Users from './components/users/Users'
 import UsersForm from './components/users/UsersForm'
 import Products from './components/products/Products'
+import Home from './routes/Home'
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
 
 function App() {
     return (
-      <div className="bg-sky-600 h-screen">
-        <div className="container mx-auto p-10">
-            <UsersForm /> 
-            <Users />
-        </div>
-      </div>
+      <>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />}> </Route>
+            <Route path="/users" element={<Users />}> </Route>
+          </Routes>
+
+      </>      
     )
 }
 
 export default App
+
+//<UsersForm /> 
+//          <Users />
