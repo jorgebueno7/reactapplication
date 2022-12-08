@@ -5,7 +5,6 @@ import '../src/css/index.css'
 import { UsersContextProvider } from './context/UsersContext'
 import { BrowserRouter } from 'react-router-dom'
 
-//<RouterProvider router = {router} />
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
