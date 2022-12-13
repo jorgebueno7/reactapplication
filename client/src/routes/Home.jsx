@@ -1,4 +1,6 @@
 import React from 'react'
+import UsersForm from '../components/users/UsersForm'
+
 const Home = () => {
   return (
     <div className="h-full">
@@ -34,6 +36,7 @@ const Home = () => {
 
             <div className="flex items-center justify-between pt-4">
               <button
+                onClick={UsersForm}
                 className="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="button">
                 Registrarme

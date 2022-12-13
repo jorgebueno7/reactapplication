@@ -10,9 +10,7 @@ const loginAuthController = async (req, res, next) =>{
     if(!usuario) {
         res.status(404).json({error: "USER NOT FOUND"})
     }else{
-        console.log(password)
-        console.log(usuario.password)
-        if(await bcrypt.compare(password, usuario.password)){
+        if(await bcrypt.compare(password, usuario.password) && email === usuario.email){
             const data = {
                 token: firmaToken(usuario),
                 user: usuario

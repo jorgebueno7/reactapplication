@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '../context/UsersContext'
 const Navbar = () => {
   const { loginUser, setLoginUsers } = useContext(UserContext)
   const logout = () => {
-    localStorage.removeItem('token-info');
-    setLoginUsers(false);
+      localStorage.removeItem('token-info');
+      setLoginUsers(false);
   };
   return (
     <div className="absolute top-3 right-5 max-w-5xl mx-auto px-4">
