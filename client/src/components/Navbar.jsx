@@ -11,11 +11,11 @@ const Navbar = () => {
     <div className="absolute top-3 right-5 max-w-5xl mx-auto px-4">
         <div className="flex items-center justify-between h-14">
         <div className="flex space-x-8 text-white-900">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/users">Usuarios</NavLink>
+            <NavLink className="text-white" to="/">Home</NavLink>
+            <NavLink className="text-white" to="/users">Usuarios</NavLink>
             {
-               loginUser ? (<NavLink to="/" onClick={() => logout()}>Cerrar sesión</NavLink>) 
-                         : (<NavLink to="/login">Login</NavLink>)
+               loginUser ? (<NavLink className="text-white" to="/login" onClick={() => logout()}>Cerrar sesión</NavLink>) 
+                         : (<NavLink className="text-white" to="/login">Login</NavLink>)
             }
             
         </div>

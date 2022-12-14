@@ -2,18 +2,18 @@ import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UsersContext'
 import { useNavigate } from 'react-router-dom'
 
+async function registraUsuario(credentials) {
+    const BASE_URL = 'http://localhost:3000/api/v1'
+    return await fetch(BASE_URL + '/users/register', 
+      { method: 'POST', 
+        headers: { 'Content-Type': 'application/json' }, 
+        body: JSON.stringify(credentials),
+        status : 200,
+    }).then(res => res.json())
+    .catch(err => console.log(err));
+}
 
 export default function UsersForm() {
-    async function registraUsuario(credentials) {
-        const BASE_URL = 'http://localhost:3000/api/v1'
-        return await fetch(BASE_URL + '/users/register', 
-          { method: 'POST', 
-            headers: { 'Content-Type': 'application/json' }, 
-            body: JSON.stringify(credentials),
-            status : 200,
-        }).then(res => res.json())
-        .catch(err => console.log(err));
-    }
     const [dni, setDni] = useState("")
     const [nombre, setNombre] = useState("")
     const [apellidos, setApellidos] = useState("")
@@ -26,6 +26,10 @@ export default function UsersForm() {
         email: '', password: '', telefono: '', direccion: ''});
     const [isSignedUp, setIsSignedUp] = useState(false)
     const { creaUsuario } = useContext(UserContext)
+    const navigate = useNavigate()
+    const navigateHome = () => {
+        navigate('/')
+    }
     
     const handleSubmit = (e) => { 
         e.preventDefault()
@@ -58,29 +62,65 @@ export default function UsersForm() {
         setIsSignedUp(true)
     }
     return (
-        <div className="max-w-md mx-auto">
-            <h1 className="text-2xl font-bold text-white text-center mb-2">Añadir un nuevo usuario</h1>
-            <form onSubmit={handleSubmit} className="bg-sky-200 p-10 mb-4 grid grid-cols-2" >
-            <input className="p-2 m-2" type="text"
-                placeholder= "Escribe tu DNI" onChange={handleChange} value={credentials.dni} name="dni" autoFocus/>
-            <input className="p-2 m-2" type="text"
-                placeholder= "Escribe tu nombre" onChange={handleChange} value={credentials.nombre} name="nombre"/>
-            <input className="p-2 m-2" type="text"
-                placeholder= "Escribe tus apellidos" onChange={handleChange} value={credentials.apellidos} name="apellidos"/>
-            <input className="p-2 m-2" type="text"
-                placeholder= "Escribe tu edad" onChange={handleChange} value={credentials.edad} name="edad"/>
-            <input className="p-2 m-2" type="email"
-                placeholder= "Escribe tu email" onChange={handleChange} value={credentials.email} name="email"/>
-            <input className="p-2 m-2" type="password"
-                placeholder= "Escribe tu password" onChange={handleChange} value={credentials.password} name="password"/>
-            <input className="p-2 m-2" type="text"
-                placeholder= "Escribe tu telefono" onChange={handleChange} value={credentials.telefono} name="telefono"/>
-            <input className="p-2 m-2" type="text"
-                placeholder= "Escribe tu direccion" onChange={handleChange} value={credentials.direccion} name="direccion"/>
-            <button onClick={postUser} className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                Guardar usuario</button>
-        </form>
-        </div>
-        
+        <>
+            <section className="bg-gray-4 dark:bg-gray-900">
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                            Registrate como nuevo usuario
+                        </h1>
+                        <form onSubmit={handleSubmit}className="space-y-4 md:space-y-6" action="#">
+                            <div>
+                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DNI</label>
+                                <input type="text" onChange={handleChange} value={credentials.dni} name="dni" placeholder="Introduce tu dni" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+                            
+                            <div>
+                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+                                <input type="text" onChange={handleChange} value={credentials.nombre} name="nombre" placeholder="Introduce tu nombre" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+                            <div>
+                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellidos</label>
+                                <input type="text" onChange={handleChange} value={credentials.apellidos} name="apellidos" placeholder="Introduce tus apellidos" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+                            <div>
+                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edad</label>
+                                <input type="text" onChange={handleChange} value={credentials.edad} name="edad" placeholder="Introduce tu edad" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+                            <div>
+                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input type="text" onChange={handleChange} value={credentials.email} name="email" placeholder="Introduce tu email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+                            <div>
+                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <input type="password" onChange={handleChange} value={credentials.password} name="password" placeholder="Introduce tu contraseña" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+
+                            <div>
+                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
+                                <input type="text" onChange={handleChange} value={credentials.telefono} name="telefono" placeholder="Introduce tu telefono" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+                            <div>
+                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Direccion</label>
+                                <input type="text" onChange={handleChange} value={credentials.direccion} name="direccion" placeholder="Introduce tu direccion" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                            </div>
+                            <button onClick={postUser} className="w-full text-white bg-blue-600 hover:bg-primary-200 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Registrarme</button>
+                            <div>
+                                {
+                                    isSignedUp ?  ( <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                                                        <span class="font-medium">Success alert!</span> Change a few things up and try submitting again.
+                                                    </div>) 
+                                                : ( <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                                                        <span class="font-medium">Danger alert!</span> Change a few things up and try submitting again.
+                                                    </div>)
+                                }
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </>
     )
 }
