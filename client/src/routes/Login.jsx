@@ -46,24 +46,24 @@ export default function Login() {
   }
 
   const loginUsuario = async e => {
-    e.preventDefault();
-    const token = await iniciaUsuario(credentials);
-    
-    if(token.token !== undefined) {
-      setToken(token);
-    
-      const userData = {token};
-      localStorage.setItem('token-info', JSON.stringify(userData));
+      e.preventDefault();
+      const token = await iniciaUsuario(credentials);
+      console.log(token)
+      if(token.token !== undefined) {
+        setToken(token);
+      
+        const userData = {token};
+        localStorage.setItem('token-info', JSON.stringify(userData));
 
-      alert('Inicio de sesión con éxito')
-      setLoginUsers(true)
-      navigateHome();
-    }
-    else{
-      alert('Credenciales incorrectas, intentelo de nuevo!')
-      setLoginUsers(false)
-      naviateAgain()
-    }
+        alert('Inicio de sesión con éxito')
+        setLoginUsers(true)
+        navigateHome();
+      }
+      else{
+        alert('Credenciales incorrectas, intentelo de nuevo!')
+        setLoginUsers(false)
+        naviateAgain()
+      }
   };
   return (
     <>
