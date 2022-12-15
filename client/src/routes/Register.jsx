@@ -26,7 +26,6 @@ export default function Register() {
         email: '', password: '', telefono: '', direccion: ''});
     const [isSignedUp, setIsSignedUp] = useState(false)
     const { creaUsuario } = useContext(UserContext)
-    const { loginUser, setLoginUsers } = useContext(UserContext)
     
     const navigate = useNavigate()
     const navigateHome = () => {

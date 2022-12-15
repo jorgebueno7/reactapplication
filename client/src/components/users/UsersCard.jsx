@@ -1,8 +1,9 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '../../context/UsersContext'
 
 function UsersCard({ usuarios }) {
     const { eliminaUsuario } = useContext(UserContext)
+    
     return (
             <div className="bg-gray-600 text-white p-4 rounded-md mt-12">
                 <h1 className="text-2xl font-bold">{usuarios.dni}</h1>

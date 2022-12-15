@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 async function actualizaUsuario(credentials) {
     const BASE_URL = 'http://localhost:3000/api/v1'
-    return await fetch(BASE_URL + '/users/' + `:{id}`, 
+    return await fetch(BASE_URL + '/users/' + `:id`, 
       { method: 'PUT', 
         headers: { 'Content-Type': 'application/json' }, 
         body: JSON.stringify(credentials),

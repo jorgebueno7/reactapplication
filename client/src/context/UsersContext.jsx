@@ -1,5 +1,11 @@
 import { useState, useEffect, createContext } from 'react'
 
+async function deleteUsuario(id) {
+    const BASE_URL = 'http://localhost:3000/api/v1'
+    return await fetch(BASE_URL + '/users/' + `${id}`, 
+      { method: 'DELETE' })
+}
+
 export const UserContext = createContext()
 export function UsersContextProvider(props) {
     const [usuarios, setUsers] = useState([])
@@ -22,7 +28,16 @@ export function UsersContextProvider(props) {
     }
     const eliminaUsuario = (usuarioId) => { 
         setUsers(usuarios.filter(usuario => usuario.id !== usuarioId))
+        deleteUsuario(usuarioId)
     }
+    /*
+    const editaUsuario = (usuarioId) => {
+        setUsers(usuarios.filter(usuario => {
+            if(usuario.id == usuarioId){
+                usuarios = usuario
+            }
+        }))
+    }*/
     useEffect(() => { 
         usersFetch(BASE_URL + '/users')
     }, [])
