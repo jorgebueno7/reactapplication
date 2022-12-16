@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/UsersContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
+
 
 async function iniciaUsuario(credentials) {
     const BASE_URL = 'http://localhost:3000/api/v1'
@@ -30,6 +31,7 @@ export default function Login() {
   const [token, setToken] = useState('');
   const [credentials, setCredentials] = useState({email: '', password: ''});
   const { loginUser, setLoginUsers } = useContext(UserContext)
+  const { isAdmin, setIsAdmin } = useContext(UserContext)
   
   const handleSubmit = async e => {
     e.preventDefault()
@@ -48,18 +50,27 @@ export default function Login() {
   const loginUsuario = async e => {
       e.preventDefault();
       const token = await iniciaUsuario(credentials);
-      console.log(token)
-      if(token.token !== undefined) {
-        setToken(token);
-      
-        const userData = {token};
-        localStorage.setItem('token-info', JSON.stringify(userData));
+      if(token.token !== undefined && credentials.email == "admin@admin.com" && credentials.password == "adminadmin"){
+          setToken(token);
+          
+          const userData = {token};
+          localStorage.setItem('token-info', JSON.stringify(userData));
 
-        alert('Inicio de sesión con éxito')
-        setLoginUsers(true)
-        navigateHome();
+          alert('Inicio de sesión como ADMIN con éxito')
+          setIsAdmin(true)
+          setLoginUsers(true)
+          navigateHome();
       }
-      else{
+      else if(token.token !== undefined) {
+          setToken(token);
+        
+          const userData = {token};
+          localStorage.setItem('token-info', JSON.stringify(userData));
+
+          alert('Inicio de sesión con éxito')
+          setLoginUsers(true)
+          navigateHome();
+      }else{
         alert('Credenciales incorrectas, intentelo de nuevo!')
         setLoginUsers(false)
         naviateAgain()

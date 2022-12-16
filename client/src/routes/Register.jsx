@@ -26,6 +26,8 @@ export default function Register() {
         email: '', password: '', telefono: '', direccion: ''});
     const [isSignedUp, setIsSignedUp] = useState(false)
     const { creaUsuario } = useContext(UserContext)
+    //const { setIsAdmin } = useContext(UserContext)
+    //const { loginUser, setLoginUsers } = useContext(UserContext)
     
     const navigate = useNavigate()
     const navigateHome = () => {
@@ -55,7 +57,6 @@ export default function Register() {
           [e.target.name] : e.target.value,
         })
     }
-
     const postUser = async e => {
         e.preventDefault()
         const user = await registraUsuario(credentials)
@@ -66,7 +67,12 @@ export default function Register() {
             setIsSignedUp(true)
             //setLoginUsers(true)
             navigateHome()
-        }else{
+        }
+        /*else if(credentials.email === 'admin@admin.com' && credentials.password === 'adminadmin'){
+            setCredentials(user)
+            setIsSignedUp(true)
+            setIsAdmin(true)
+        }*/else{
             alert('Algo no ha ido bien. Repita el proceso')
         }
     }

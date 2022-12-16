@@ -42,7 +42,7 @@ export function UsersContextProvider(props) {
         usersFetch(BASE_URL + '/users')
     }, [])
     return (
-        <UserContext.Provider value={{usuarios, loginUser, setLoginUsers, creaUsuario, eliminaUsuario}}>
+        <UserContext.Provider value={{usuarios, loginUser, isAdmin, setIsAdmin, setLoginUsers, creaUsuario, eliminaUsuario}}>
             {props.children}
         </UserContext.Provider>
     )
