@@ -8,14 +8,11 @@ const Home = () => {
   const naviateRegister = () => {
     navigate('/users/register')
   }
+  const navigateProducts = () => {
+    navigate('/products')
+  }
   return (
     <div className="h-full">
-      <div className="w-full container mx-auto">
-        <div className="w-full flex items-center justify-between">
-          <div className="flex w-1/2 justify-end content-center">
-          </div>
-        </div>
-      </div>
       <div className="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <div className="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
           <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
@@ -48,7 +45,7 @@ const Home = () => {
         </div>
 
         <div className="w-full xl:w-3/5 p-12 overflow-hidden">
-          <img className="mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6" src="./src/assets/macbook.svg" />
+          <img onClick={navigateProducts} className="mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6" src="./src/assets/0-0-79871.png" />
         </div>
 
         <div className="mx-auto md:pt-16">

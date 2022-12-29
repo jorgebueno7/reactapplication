@@ -1,16 +1,20 @@
-function Products({productos = []}) {
+import { useContext } from 'react'
+import { ProductContext } from '../../context/ProductsContext'
+import ProductsCard from './ProductsCard'
+
+function Products() {
+    const { productos } = useContext(ProductContext)
+
     return (
-      <div>
-          {productos.map((item, index) => (
-              <div key={index}>
-                  <h1>{item.nombre}</h1>
-                  <h2>{item.marca}</h2>
-                  <p>{item.tipo}</p>
-                  <p>{item.precio}</p>
-              </div>))
-          }
-      </div>
+        <>
+            <div className="grid grid-cols-4 gap-2">
+            {productos.map((producto) => (
+                    <ProductsCard key={producto.id} productos={producto} />))
+            }
+            </div>
+        </>
     )
-  }
-  
-  export default Products
+}
+
+
+export default Products

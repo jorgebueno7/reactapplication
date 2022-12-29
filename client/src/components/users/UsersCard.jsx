@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UsersContext'
 
 function UsersCard({ usuarios }) {
-    const { eliminaUsuario, editaUsuario } = useContext(UserContext)
+    const { eliminaUsuario } = useContext(UserContext)
     const navigate = useNavigate()
     const navigateUpdate = () => {
         navigate('/users/update')
