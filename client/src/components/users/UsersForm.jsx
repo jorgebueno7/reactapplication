@@ -17,8 +17,7 @@ export default function UsersForm() {
     const [password, setPassword] = useState("")
     const [telefono, setTelefono] = useState("")
     const [direccion, setDireccion] = useState("")
-    const [credentials, setCredentials] = useState({dni: '', nombre: '', apellidos: '', edad: '',
-        email: '', password: '', telefono: '', direccion: ''});
+    const [credentials, setCredentials] = useState({email: '', password: '', telefono: '', direccion: ''});
     
     const navigate = useNavigate()
     const navigateHome = () => {
@@ -42,8 +41,6 @@ export default function UsersForm() {
         if(user.email.length > 0 && user.password.length > 0 && user.telefono.length > 0 && user.direccion.length > 0){
             alert('Usuario actualizado con éxito')
             setCredentials(user)
-            //setIsSignedUp(true)
-            //setLoginUsers(true)
             navigateHome()
         }else{
             alert('Algo no ha ido bien. Repita el proceso')

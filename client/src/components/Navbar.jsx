@@ -14,8 +14,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-14">
         <div className="flex space-x-8 text-white-900">
             <NavLink className="text-white" to="/">Home</NavLink>
-            <NavLink className="text-white" to="/users">Usuarios</NavLink>
-            { loginUser ? (<NavLink className="text-white" to="/login" onClick={() => logout()}>Cerrar sesión</NavLink>)
+            
+            { loginUser ? (<>
+                           <NavLink className="text-white" to="/users">Usuarios</NavLink>
+                           <NavLink className="text-white" to="/login" onClick={() => logout()}>Cerrar sesión</NavLink>
+                           </>)
                         : (<NavLink className="text-white" to="/login">Login</NavLink>) }
         </div>
         </div>

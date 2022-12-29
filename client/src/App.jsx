@@ -5,6 +5,7 @@ import Home from './routes/Home'
 import Login from './routes/Login'
 import Register from './routes/Register'
 import { Routes, Route } from 'react-router-dom'
+import Update from './routes/Update'
 
 function App() {
     return (
@@ -16,7 +17,7 @@ function App() {
               <Route path="/users" element={<Users />}></Route>
               <Route path="/login" element={<Login />}></Route>
               <Route path="/users/register" element={<Register />}></Route>
-              <Route path="/users/`:{id}`" element={<UsersForm />}></Route>
+              <Route path="/users/update" element={<Update />}></Route>
             </>
           </Routes>
 

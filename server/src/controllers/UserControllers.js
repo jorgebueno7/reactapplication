@@ -54,8 +54,11 @@ const putUser = async (req, res) => {
     try{
         const { id } = req.params
         const { email, password, telefono, direccion } = req.body
+        
+        // NUEVO 
+        const hashedPassword = await bcrypt.hash(password, 10);
         const usuarios = await user.findByPk(id)
-        usuarios.email = email; usuarios.password = password;
+        usuarios.email = email; usuarios.password = hashedPassword;
         usuarios.telefono = telefono; usuarios.direccion = direccion
         await usuarios.save()
         res.status(201).json(usuarios)

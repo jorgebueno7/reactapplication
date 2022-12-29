@@ -30,14 +30,6 @@ export function UsersContextProvider(props) {
         setUsers(usuarios.filter(usuario => usuario.id !== usuarioId))
         deleteUsuario(usuarioId)
     }
-    /*
-    const editaUsuario = (usuarioId) => {
-        setUsers(usuarios.filter(usuario => {
-            if(usuario.id == usuarioId){
-                usuarios = usuario
-            }
-        }))
-    }*/
     useEffect(() => { 
         usersFetch(BASE_URL + '/users')
     }, [])
