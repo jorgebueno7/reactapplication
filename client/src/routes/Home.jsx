@@ -30,7 +30,7 @@ const Home = () => {
           <form className="bg-gray-900 opacity-75 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
             <div className="mb-4">
               <label className="block text-blue-300 py-2 font-bold mb-2" htmlFor="emailaddress">
-                Registrate y disfruta de nuestros productos
+                REGÍSTRATE Y DISFRUTA DE NUESTROS PRODUCTOS
               </label>
             </div>
             <div className="flex items-center justify-between pt-4">

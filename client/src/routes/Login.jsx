@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/UsersContext'
 import { useNavigate, NavLink } from 'react-router-dom'
 
-
 async function iniciaUsuario(credentials) {
     const BASE_URL = 'http://localhost:3000/api/v1'
     return await fetch(BASE_URL + '/users/login', 
@@ -26,8 +25,7 @@ export default function Login() {
   const naviateUsers = () => {
     navigate('/users/register')
   }
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
   const [token, setToken] = useState('');
   const [credentials, setCredentials] = useState({email: '', password: ''});
   const { loginUser, setLoginUsers } = useContext(UserContext)

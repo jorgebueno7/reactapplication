@@ -6,6 +6,12 @@ async function deleteUsuario(id) {
       { method: 'DELETE' })
 }
 
+async function getUsuarioById(id) {
+    const BASE_URL = 'http://localhost:3000/api/v1'
+    return await fetch(BASE_URL + '/users/' + `${id}`, 
+      { method: 'GET' })
+}
+
 export const UserContext = createContext()
 export function UsersContextProvider(props) {
     const [usuarios, setUsers] = useState([])
@@ -30,11 +36,15 @@ export function UsersContextProvider(props) {
         setUsers(usuarios.filter(usuario => usuario.id !== usuarioId))
         deleteUsuario(usuarioId)
     }
+    const listarUsuarioPorId = (usuarioId) => { 
+        setUsers(usuarios.filter(usuario => usuario.id !== usuarioId))
+        getUsuarioById(usuarioId)
+    }
     useEffect(() => { 
         usersFetch(BASE_URL + '/users')
     }, [])
     return (
-        <UserContext.Provider value={{usuarios, loginUser, isAdmin, setIsAdmin, setLoginUsers, creaUsuario, eliminaUsuario}}>
+        <UserContext.Provider value={{usuarios, loginUser, isAdmin, setIsAdmin, setLoginUsers, creaUsuario, eliminaUsuario, listarUsuarioPorId}}>
             {props.children}
         </UserContext.Provider>
     )

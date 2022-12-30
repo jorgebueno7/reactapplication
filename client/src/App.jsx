@@ -21,7 +21,6 @@ function App() {
               <Route path="/products" element={<Products />}></Route>
             </>
           </Routes>
-
       </>      
     )
 }
