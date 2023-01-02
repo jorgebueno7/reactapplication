@@ -1,6 +1,5 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Register from './Register'
 
 
 const Home = () => {
@@ -13,16 +12,16 @@ const Home = () => {
   }
   return (
     <div className="h-full">
-      <div className="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-        <div className="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-          <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+      <div className="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row">
+        <div className="flex flex-col w-full xl:w-2/5 lg:items-start overflow-y-hidden">
+          <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight md:text-left">
             Gym
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">
               food
             </span>
           </h1>
-          <p className="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
-            Tu tienda de suplementos y ropa deportiva favorita!
+          <p className="leading-normal text-base md:text-2xl mb-8 md:text-left">
+            Tu tienda de suplementos y ropa deportiva favorita
           </p>
           <div>
             
@@ -43,9 +42,10 @@ const Home = () => {
             </div>
           </form>
         </div>
-
-        <div className="w-full xl:w-3/5 p-12 overflow-hidden">
+        
+        <div className="flex w-full justify-center xl:w-2/5 p-12 overflow-hidden">
           <img onClick={navigateProducts} className="mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6" src="./src/assets/0-0-79871.png" />
+          <img onClick={navigateProducts} className="mx-auto w-full md:w-2/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6" src="./src/assets/2174_mainimage.png" />
         </div>
 
         <div className="mx-auto md:pt-16">

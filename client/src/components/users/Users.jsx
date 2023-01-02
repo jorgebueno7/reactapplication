@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import ReactPaginate from 'react-paginate';
 import { UserContext } from '../../context/UsersContext'
 import UsersCard from "./UsersCard"
 

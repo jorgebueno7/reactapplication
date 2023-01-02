@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ProductContext } from '../context/ProductsContext'
+import { ProductContext } from '../../context/ProductsContext'
 
 async function crearProducto(credentials) {
     const BASE_URL = 'http://localhost:3000/api/v1'

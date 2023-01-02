@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { UserContext } from '../context/UsersContext'
+import { UserContext } from '../../context/UsersContext'
 
 async function actualizaUsuario(credentials) {
     const BASE_URL = 'http://localhost:3000/api/v1'
@@ -12,7 +12,6 @@ async function actualizaUsuario(credentials) {
 }
 
 function Update() {
-    //const { editaUsuario } = useContext(UserContext)
     const { usuarios } = useContext(UserContext)
     const [credentials, setCredentials] = useState({id: usuarios.length, email: '', password: '', telefono: '', direccion: ''});
     const handleSubmit = async e => { 

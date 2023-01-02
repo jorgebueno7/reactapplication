@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000
 
 async function main() {
     try{
-        sequelize.sync({ force: true })
+        sequelize.sync({ force: false })
         sequelize.authenticate()
         console.log('Conexión establecida')
     }catch(error){

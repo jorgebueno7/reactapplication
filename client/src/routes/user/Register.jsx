@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { UserContext } from '../context/UsersContext'
+import { UserContext } from '../../context/UsersContext'
 import { useNavigate } from 'react-router-dom'
 
 async function registraUsuario(credentials) {
@@ -24,13 +24,14 @@ export default function Register() {
     const [direccion, setDireccion] = useState("")
     const [credentials, setCredentials] = useState({dni: '', nombre: '', apellidos: '', edad: '',
         email: '', password: '', telefono: '', direccion: ''});
-    const [isSignedUp, setIsSignedUp] = useState(false)
     const { creaUsuario } = useContext(UserContext)
-    const { setIsAdmin } = useContext(UserContext)
     
     const navigate = useNavigate()
     const navigateHome = () => {
         navigate('/')
+    }
+    const navigateLogin = () => {
+        navigate('/login')
     }
     
     const handleSubmit = async e => { 
@@ -63,14 +64,13 @@ export default function Register() {
             && credentials.email === "admin@admin.com" && credentials.password === "adminadmin" && user.telefono.length > 0 && user.direccion.length > 0){
             alert('Usuario de tipo administrador creado con éxito')
             setCredentials(user)
-            //setIsAdmin(true)
-            navigateHome()
+            navigateLogin()
         }
         else if(user.dni.length > 0 && user.nombre.length > 0 && user.apellidos.length > 0 && user.edad > 0
             && user.email.length > 0 && user.password.length > 0 && user.telefono.length > 0 && user.direccion.length > 0){
             alert('Usuario registrado con éxito')
             setCredentials(user)
-            navigateHome()
+            navigateLogin()
         }
         else{
             alert('Algo no ha ido bien. Repita el proceso')

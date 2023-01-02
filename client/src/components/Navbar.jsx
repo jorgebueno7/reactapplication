@@ -4,13 +4,13 @@ import { UserContext } from '../context/UsersContext'
 
 const Navbar = () => {
   const { loginUser, setLoginUsers } = useContext(UserContext)
-  const { listarUsuarioPorId } = useContext(UserContext)
   const { isAdmin, setIsAdmin } = useState(UserContext)
   const logout = () => {
       localStorage.removeItem('token-info');
       setIsAdmin(false)
       setLoginUsers(false);
-  };
+  }
+  
   return (
     <div className="absolute top-3 right-5 max-w-5xl mx-auto px-4">
         <div className="flex items-center justify-between h-14">

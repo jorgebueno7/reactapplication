@@ -6,12 +6,6 @@ async function deleteUsuario(id) {
       { method: 'DELETE' })
 }
 
-async function getUsuarioById(id) {
-    const BASE_URL = 'http://localhost:3000/api/v1'
-    return await fetch(BASE_URL + '/users/' + `${id}`, 
-      { method: 'GET' })
-}
-
 export const UserContext = createContext()
 export function UsersContextProvider(props) {
     const [usuarios, setUsers] = useState([])
@@ -21,7 +15,7 @@ export function UsersContextProvider(props) {
     const usersFetch = (url) => { fetch(url).then(res => res.json()).then(data => setUsers(data.users)).catch(err => err.message); }
     const creaUsuario = (usuario) => { 
         setUsers([...usuarios, {
-            id: usuarios.length,
+            id: usuario.id,
             dni: usuario.dni,
             nombre: usuario.nombre,
             apellidos: usuario.apellidos,
@@ -36,15 +30,12 @@ export function UsersContextProvider(props) {
         setUsers(usuarios.filter(usuario => usuario.id !== usuarioId))
         deleteUsuario(usuarioId)
     }
-    const listarUsuarioPorId = (usuarioId) => { 
-        setUsers(usuarios.filter(usuario => usuario.id !== usuarioId))
-        getUsuarioById(usuarioId)
-    }
+
     useEffect(() => { 
         usersFetch(BASE_URL + '/users')
     }, [])
     return (
-        <UserContext.Provider value={{usuarios, loginUser, isAdmin, setIsAdmin, setLoginUsers, creaUsuario, eliminaUsuario, listarUsuarioPorId}}>
+        <UserContext.Provider value={{usuarios, loginUser, isAdmin, setUsers, setIsAdmin, setLoginUsers, creaUsuario, eliminaUsuario }}>
             {props.children}
         </UserContext.Provider>
     )
