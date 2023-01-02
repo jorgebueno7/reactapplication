@@ -26,8 +26,7 @@ export default function Register() {
         email: '', password: '', telefono: '', direccion: ''});
     const [isSignedUp, setIsSignedUp] = useState(false)
     const { creaUsuario } = useContext(UserContext)
-    //const { setIsAdmin } = useContext(UserContext)
-    //const { loginUser, setLoginUsers } = useContext(UserContext)
+    const { setIsAdmin } = useContext(UserContext)
     
     const navigate = useNavigate()
     const navigateHome = () => {
@@ -61,18 +60,19 @@ export default function Register() {
         e.preventDefault()
         const user = await registraUsuario(credentials)
         if(user.dni.length > 0 && user.nombre.length > 0 && user.apellidos.length > 0 && user.edad > 0
+            && credentials.email === "admin@admin.com" && credentials.password === "adminadmin" && user.telefono.length > 0 && user.direccion.length > 0){
+            alert('Usuario de tipo administrador creado con éxito')
+            setCredentials(user)
+            //setIsAdmin(true)
+            navigateHome()
+        }
+        else if(user.dni.length > 0 && user.nombre.length > 0 && user.apellidos.length > 0 && user.edad > 0
             && user.email.length > 0 && user.password.length > 0 && user.telefono.length > 0 && user.direccion.length > 0){
             alert('Usuario registrado con éxito')
             setCredentials(user)
-            setIsSignedUp(true)
-            //setLoginUsers(true)
             navigateHome()
         }
-        /*else if(credentials.email === 'admin@admin.com' && credentials.password === 'adminadmin'){
-            setCredentials(user)
-            setIsSignedUp(true)
-            setIsAdmin(true)
-        }*/else{
+        else{
             alert('Algo no ha ido bien. Repita el proceso')
         }
     }
@@ -88,7 +88,7 @@ export default function Register() {
                         <form onSubmit={handleSubmit}className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DNI</label>
-                                <input type="text" onChange={handleChange} value={credentials.dni} name="dni" placeholder="Introduce tu dni" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                                <input type="text" onChange={handleChange} value={credentials.dni} name="dni" placeholder="Introduce tu dni" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" autoFocus/>
                             </div>
                             
                             <div>

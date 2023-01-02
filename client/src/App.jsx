@@ -5,6 +5,7 @@ import Home from './routes/Home'
 import Login from './routes/Login'
 import Register from './routes/Register'
 import Update from './routes/Update'
+import CreateProducts from './routes/CreateProducts'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route path="/users/register" element={<Register />}></Route>
               <Route path="/users/update" element={<Update />}></Route>
               <Route path="/products" element={<Products />}></Route>
+              <Route path="/products/create" element={<CreateProducts />}></Route>
             </>
           </Routes>
       </>      

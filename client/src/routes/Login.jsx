@@ -54,7 +54,7 @@ export default function Login() {
           const userData = {token};
           localStorage.setItem('token-info', JSON.stringify(userData));
 
-          alert('Inicio de sesión como ADMIN con éxito')
+          alert('Inicio de sesión como administrador')
           setIsAdmin(true)
           setLoginUsers(true)
           navigateHome();
