@@ -50,7 +50,6 @@ export default function Register() {
         setDni(""); setNombre(""); setApellidos(""); setEdad("");
         setEmail(""); setPassword(""); setTelefono(""); setDireccion("");
     }
-
     const handleChange = e => {
         setCredentials({
           ...credentials,
@@ -88,7 +87,7 @@ export default function Register() {
                         <form onSubmit={handleSubmit}className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DNI</label>
-                                <input type="text" onChange={handleChange} value={credentials.dni} name="dni" placeholder="Introduce tu dni" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" autoFocus/>
+                                <input type="text" onChange={handleChange} value={credentials.dni} name="dni" placeholder="Introduce tu dni" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" autoFocus pattern='[A-Z]{9}'/>
                             </div>
                             
                             <div>
@@ -100,12 +99,12 @@ export default function Register() {
                                 <input type="text" onChange={handleChange} value={credentials.apellidos} name="apellidos" placeholder="Introduce tus apellidos" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                             </div>
                             <div>
-                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edad</label>
-                                <input type="text" onChange={handleChange} value={credentials.edad} name="edad" placeholder="Introduce tu edad" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                                <label htmlFor="number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Edad</label>
+                                <input type="number" onChange={handleChange} value={credentials.edad} name="edad" placeholder="Introduce tu edad" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                             </div>
                             <div>
-                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="text" onChange={handleChange} value={credentials.email} name="email" placeholder="Introduce tu email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input type="email" onChange={handleChange} value={credentials.email} name="email" placeholder="something@something.something" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" />
                             </div>
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
@@ -113,8 +112,8 @@ export default function Register() {
                             </div>
 
                             <div>
-                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
-                                <input type="text" onChange={handleChange} value={credentials.telefono} name="telefono" placeholder="Introduce tu telefono" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                                <label htmlFor="tel" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
+                                <input type="tel" onChange={handleChange} value={credentials.telefono} name="telefono" placeholder="Introduce tu telefono" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                             </div>
                             <div>
                                 <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Direccion</label>

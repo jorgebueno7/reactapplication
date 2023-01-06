@@ -1,14 +1,16 @@
 import { useContext, useState } from 'react'
 import { UserContext } from '../../context/UsersContext'
 import UsersCard from "./UsersCard"
+import Pagination from '../Pagination'
 
 function Users() {
     const { usuarios } = useContext(UserContext)
     return (
       <>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-1">
           {usuarios.map((usuario) => (
-                <UsersCard key={usuario.id} usuarios={usuario} />))
+            <UsersCard key={usuario.id} usuarios={usuario} />
+          ))
           }
         </div>
       </>
