@@ -14,6 +14,12 @@ async function iniciaUsuario(credentials) {
     .catch(err => console.log(err));
 }
 
+/*
+  Componente encargado de realizar el login del usuario. En el proceso de login, almacenamos
+  el token generado en el local storage del navegador. En cada uno de los componentes, comprobamos
+  si las credenciales son correctas y si es cierto, salta una alerta informando al usuario del correcto
+  inicio de sesión ya sea como administrador o como un usuario común
+*/
 export default function Login() {
   const navigate = useNavigate()
   const navigateHome = () => {
@@ -32,9 +38,9 @@ export default function Login() {
   const { isAdmin, setIsAdmin } = useContext(UserContext)
   
   const handleSubmit = async e => {
-    e.preventDefault()
-    const token = await iniciaUsuario(credentials);
-    setToken(token);
+      e.preventDefault()
+      const token = await iniciaUsuario(credentials)
+      setToken(token)
   }
   
   const handleChange = e => {
@@ -77,10 +83,6 @@ export default function Login() {
     <>
     <section className="bg-gray-4 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-white dark:text-white">
-              <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
-              Gymfood    
-          </a>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

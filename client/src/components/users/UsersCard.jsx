@@ -2,10 +2,18 @@ import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UsersContext'
 
+/*
+    En el componente que estamos, se muestra la información
+    de las tarjetas de los usuarios, utilizamos un useState (showInfo)
+    para controlar la información que se muestra al usuario en todo momento
+    ya que si presiona el botón "Ver detalles" cambiará el estado de la variable
+    y de nuevo, aplicando ternarias de react, mostrará la información correspondiente
+    También, si el usuario que ha hecho login en nuestra aplicación es de tipo administrador
+    dispondrá de las funcionalidades de "Eliminar un usuario" y "Editar un usuario" 
+*/
 function UsersCard({ usuarios }) {
     const { eliminaUsuario } = useContext(UserContext)
     const { isAdmin } = useContext(UserContext)
-
     const [showInfo, setShowInfo] = useState(false)
 
     const navigate = useNavigate()

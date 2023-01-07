@@ -13,6 +13,9 @@ async function crearProducto(credentials) {
     }).then(res => res.json()).catch(err => console.log(err))
 }
 
+/*
+    Este componente, como apreciamos en su nombre es el encargado de crear un producto.
+*/
 function CreateProducts() {
     const [nombre, setNombre] = useState("")
     const [marca, setMarca] = useState("")

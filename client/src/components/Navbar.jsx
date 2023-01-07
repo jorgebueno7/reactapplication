@@ -2,9 +2,15 @@ import { NavLink } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { UserContext } from '../context/UsersContext'
 
+/* 
+  Este componente es la barra de navegación de la aplicación,
+  en ella se encuentra el logout en el que se elimina el token del local storage
+  y aplicamos ternarias de react para una mayor comprensión del funcionamiento
+*/
 const Navbar = () => {
   const { loginUser, setLoginUsers } = useContext(UserContext)
   const { isAdmin, setIsAdmin } = useState(UserContext)
+
   const logout = () => {
       localStorage.removeItem('token-info');
       setIsAdmin(false)
@@ -21,7 +27,7 @@ const Navbar = () => {
                             <NavLink className="text-white" to="/users">Usuarios</NavLink>
                             <NavLink className="text-white" to="/login" onClick={() => logout()}>Cerrar sesión</NavLink>
                            </>)
-                        : (<NavLink className="text-white" to="/login">Login</NavLink>) }
+                          : (<NavLink className="text-white" to="/login">Login</NavLink>) }
         </div>
         </div>
     </div>

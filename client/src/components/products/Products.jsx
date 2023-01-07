@@ -4,6 +4,12 @@ import { ProductContext } from '../../context/ProductsContext'
 import { UserContext } from '../../context/UsersContext'
 import ProductsCard from './ProductsCard'
 
+/*
+    En este componente mostraremos la información de los productos
+    a través de tarjetas que comentaremos a continuación (ProductsCard).
+    También aplicamos ternarias de react para mostrar información relevante
+    para el administrador o cualquier usuario común
+*/
 function Products() {
     const { productos } = useContext(ProductContext)
     const { isAdmin } = useContext(UserContext)
@@ -13,7 +19,7 @@ function Products() {
     }
     return (
         <>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 gap-2">
             { isAdmin ? (<>
                 {productos.map((producto) => (
                     <ProductsCard key={producto.id} productos={producto} />))

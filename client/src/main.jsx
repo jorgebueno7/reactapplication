@@ -6,7 +6,9 @@ import { UsersContextProvider } from './context/UsersContext'
 import { ProductsContextProvider } from './context/ProductsContext'
 import { BrowserRouter } from 'react-router-dom'
 
-
+/*
+  Componente principal de la aplicación.
+*/
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <UsersContextProvider>

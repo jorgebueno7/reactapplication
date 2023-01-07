@@ -6,6 +6,15 @@ async function deleteProducto(id) {
       { method: 'DELETE' })
 }
 
+/*
+    Como podemos ver, encontramos un useState. El useState de productos lo utilizamos
+    para actualizar el array de productos que consumimos del API al hacer fetch, tanto cuando añadimos
+    un producto, lo eliminamos o actualizamos datos del mismo.
+
+    Al utilizar un context, emplearemos el provider para "exportar" todas las variables, estados y funciones
+    que vayamos a utilizar a posteriori en cada uno de los componentes
+*/
+
 export const ProductContext = createContext()
 export function ProductsContextProvider(props) {
     const [productos, setProducts] = useState([])

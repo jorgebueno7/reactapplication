@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react'
 import { UserContext } from '../../context/UsersContext'
+import { useNavigate } from 'react-router-dom'
 
 async function actualizaUsuario(credentials) {
     const BASE_URL = 'http://localhost:3000/api/v1'
@@ -11,9 +12,18 @@ async function actualizaUsuario(credentials) {
     .catch(err => console.log(err));
 }
 
+/*
+    Componente encargado de actualizar los usuarios, en este caso solo se encargará de
+    actualizar el email, la contraseña que también estará hasheada, el telefono y la dirección
+    de los usuarios que es como inicialmente hicimos en el API
+*/
 function Update() {
     const { usuarios } = useContext(UserContext)
     const [credentials, setCredentials] = useState({id: usuarios.length, email: '', password: '', telefono: '', direccion: ''});
+    const navigate = useNavigate()
+    const navigateHome = () => {
+        navigate('/')
+    }
     const handleSubmit = async e => { 
         e.preventDefault()
     }
@@ -26,7 +36,12 @@ function Update() {
     const putUser = async e => {
         e.preventDefault();
         const user = await actualizaUsuario(credentials)
-        setCredentials(user)
+        if(user.email.length > 0 && user.password.length > 0
+            && user.telefono.length == 9 && user.direccion.length > 0){
+                alert('Usuario actualizado con éxito')
+                setCredentials(user)
+                navigateHome()
+            }
     }
 
     return (
@@ -40,8 +55,8 @@ function Update() {
                         </h1>
                         <form onSubmit={handleSubmit}className="space-y-4 md:space-y-6" action="#">
                             <div>
-                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="text" onChange={handleChange} value={credentials.email || ''} name="email" placeholder="Introduce tu email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                <input type="email" onChange={handleChange} value={credentials.email || ''} name="email" placeholder="Introduce tu email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                             </div>
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
@@ -49,8 +64,8 @@ function Update() {
                             </div>
 
                             <div>
-                                <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
-                                <input type="text" onChange={handleChange} value={credentials.telefono || ''} name="telefono" placeholder="Introduce tu telefono" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                                <label htmlFor="number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
+                                <input type="number" onChange={handleChange} value={credentials.telefono || ''} name="telefono" placeholder="Introduce tu telefono" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                             </div>
                             <div>
                                 <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Direccion</label>
